@@ -1,0 +1,40 @@
+'menu': [
+  'label': 'Packages'
+  'submenu': [
+    'label': 'GrapViz Preview (plus)'
+    'submenu': [
+      {'label': 'Toggle Preview', 'command': 'graphviz-preview-plus:toggle'}
+      {
+        label: 'Select layout engine'
+        submenu: [
+          {label: 'dot',   command:'graphviz-preview-plus:engine-dot'}
+          {label: 'circo', command:'graphviz-preview-plus:engine-circo'}
+          {label: 'fdp',   command:'graphviz-preview-plus:engine-fdp'}
+          {label: 'neato', command:'graphviz-preview-plus:engine-neato'}
+          {label: 'osage', command:'graphviz-preview-plus:engine-osage'}
+          {label: 'twopi', command:'graphviz-preview-plus:engine-twopi'}
+        ]
+      }
+    ]
+  ]
+]
+'context-menu':
+  '.graphviz-preview-plus': [
+    {label: 'Copy As SVG',       command: 'core:copy'}
+    {label: 'Save As SVG\u2026', command: 'core:save-as'}
+    {label: 'Save As PNG\u2026', command: 'graphviz-preview-plus:save-as-png'}
+    {
+      label: 'Layout engine'
+      submenu: [
+        {label: 'dot',   command:'graphviz-preview-plus:engine-dot'}
+        {label: 'circo', command:'graphviz-preview-plus:engine-circo'}
+        {label: 'fdp',   command:'graphviz-preview-plus:engine-fdp'}
+        {label: 'neato', command:'graphviz-preview-plus:engine-neato'}
+        {label: 'osage', command:'graphviz-preview-plus:engine-osage'}
+        {label: 'twopi', command:'graphviz-preview-plus:engine-twopi'}
+      ]
+    }
+  ]
+  #'fdp', 'neato', 'osage', 'twopi'
+  #  '.tree-view .file .name[data-name$=\\.dot]':
+  #   [{label: 'GraphViz Preview (plus)', command:  'graphviz-preview-plus:preview-file'}]

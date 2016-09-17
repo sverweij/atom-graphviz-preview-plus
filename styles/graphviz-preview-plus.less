@@ -1,0 +1,54 @@
+@import 'ui-variables';
+@import 'syntax-variables';
+.graphviz-preview-plus {
+    color: black;
+    background-color: white;
+    padding-top:2em;
+    overflow: auto;
+
+    atom-text-editor {
+      // only show scrollbars on hover
+      .scrollbars-visible-always &::shadow {
+        .vertical-scrollbar,
+        .horizontal-scrollbar {
+          visibility: hidden;
+        }
+      }
+      .scrollbars-visible-always &:hover::shadow {
+        .vertical-scrollbar,
+        .horizontal-scrollbar {
+          visibility: visible;
+        }
+      }
+    }
+
+    .code {
+        overflow-x: auto;
+        color: @syntax-text-color;
+        background-color: @syntax-background-color;
+    }
+
+    .error-wrap {
+        padding: 0 2em 2em 2em;
+        font-size:1.2em;
+    }
+
+    .error-head {
+        padding: 0.5em;
+        background-color: @app-background-color;
+    }
+
+    .error-text {
+        color: @text-color;
+    }
+}
+
+.dot-spinner {
+  margin: auto;
+  background-image: url(images/octocat-spinner-128.gif);
+  background-repeat: no-repeat;
+  background-size: 64px;
+  background-position: top center;
+  padding-top: 70px;
+  text-align: center;
+}

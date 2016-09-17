@@ -1,0 +1,43 @@
+/*
+ * renders best in twopi
+ */
+graph test {
+    node[shape=point style=invis width=0]
+    edge[style=bold]
+
+    a--b
+    a--c
+    a--d
+    a--e
+    a--f
+    a--g
+    a--h
+    a--i
+
+    b--c--d--e--f--g--h--i--b
+
+    b -- ba
+    b -- bb
+    c -- ca
+    c -- cb
+    d -- da
+    d -- db
+    e -- ea
+    e -- eb
+    f -- fa
+    f -- fb
+    g -- ga
+    g -- gb
+    h -- ha
+    h -- hb
+    i -- ia
+    i -- ib
+
+    ba--ca--da--ea--fa--ga--ha--ia--ba
+    ba--ca--da--ea--fa--ga--ha--ia--ba
+    ba--ca--da--ea--fa--ga--ha--ia--ba
+    ba--ca--da--ea--fa--ga--ha--ia--ba
+    ba--ca--da--ea--fa--ga--ha--ia--ba
+    ba--ca--da--ea--fa--ga--ha--ia--ba
+    ba--ca--da--ea--fa--ga--ha--ia--ba
+}

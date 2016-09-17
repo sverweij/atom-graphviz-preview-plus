@@ -1,0 +1,51 @@
+/* lays out best with twopi */
+graph "GraphViz preview plus" {
+    fontname=Helvetica fontsize=12 penwidth=2.0 overlap=auto
+    node[shape=Mrecord fontname=Helvetica fontsize=12 style=bold]
+
+    "GraphViz preview+" [shape=oval fontsize=14 style=bold  fontcolor=black]
+
+    "GraphViz preview+" -- {
+        features
+        about
+        technology
+    }
+
+    edge[color=darkred]
+    node[color=darkred fontsize=10 fillcolor="#ffdddd" style=filled]
+    about -- {
+        author[label="{author|Sander Verweij}"]
+        license[label="{license|GPL-v3}"]
+    }
+
+    edge[color=darkblue]
+    node[color=darkblue fillcolor="#ddddff" style=filled]
+    technology -- {
+        "viz.js"
+        CoffeeScript
+    }
+    "viz.js" -- {
+        GraphViz
+        emscripten
+    }
+
+    edge[color=darkgreen]
+    node[color=darkgreen fillcolor="#ddffdd" style=filled]
+    features -- {
+        "LIVE\lupdate\l"
+        "export to\lsvg and png"
+        "choose\llayout engine\l"
+        "zoom controls"
+        "syntax highlighting\lby 'language-dot'\l"
+    }
+
+
+    node[shape=note style=filled fillcolor="#ffffdd" fontname=Helvetica fontsize=10 color=grey]
+    edge[style=dashed color=grey]
+
+    this [label="future features:\nplanned\l" style=filled  color=grey]
+    this -- features
+
+    pulled [label="if not installed yet,\l preview+ will do so'\l" style=filled]
+    pulled -- "syntax highlighting\lby 'language-dot'\l"
+}

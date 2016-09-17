@@ -1,0 +1,7 @@
+digraph "super simple fsm" {
+    initial [shape=point width=0.2];
+
+    initial -> off;
+    off -> on [label="switch flipped    "]
+    on -> off [label="switch flipped    "]
+}
