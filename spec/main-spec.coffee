@@ -223,3 +223,12 @@ describe "graphviz preview plus package main", ->
       runs ->
         expect(preview[0].innerHTML).toContain """<span class="error-text">Error: syntax error in line 1 near '&gt;'
 </span>"""
+
+  describe "error rendering", ->
+    it "highlights the line with the error", ->
+      waitsForPromise -> atom.workspace.open("subdir/error-in-line-3.gv")
+      runs -> atom.commands.dispatch workspaceElement, 'graphviz-preview-plus:toggle'
+      expectPreviewInSplitPane()
+
+      runs ->
+        expect(preview[0].innerHTML).toContain """  3 <mark>  \\</mark>"""

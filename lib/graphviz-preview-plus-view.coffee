@@ -233,7 +233,7 @@ class GraphVizPreviewView extends ScrollView
     errRenderer ?= require './err-renderer'
 
     @getSource().then (source) =>
-      @html(errRenderer.renderError source, error.location, error.message) if source?
+      @html(errRenderer.renderError source, error.message) if source?
 
   showLoading: ->
     @loading = true
