@@ -1,8 +1,8 @@
-# Atom GraphViz Preview (plus) package
+# Atom GraphViz Preview+ package
 
 Shows the rendered version of the GraphViz dot in your editor when you press `ctrl-shift-V`.
 
-Enabled for `.gv` and `.dot` files
+Enabled for `.dot`
 
 ![animated gif demoing live preview](https://raw.githubusercontent.com/sverweij/atom-graphviz-preview-plus/master/assets/graphviz-preview-plus.gif)
 
