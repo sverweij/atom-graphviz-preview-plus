@@ -9,11 +9,12 @@
   },
   "keywords": [
     "graphviz",
+    "dot",
     "preview"
   ],
   "license": "GPL-3.0",
   "engines": {
-    "atom": "*"
+    "atom": ">=1.0.0 <2.0.0"
   },
   "readmeFilename": "README.md",
   "dependencies": {
@@ -32,8 +33,5 @@
   "package-deps": ["language-dot"],
   "bugs": {
     "url": "https://github.com/sverweij/atom-graphviz-preview-plus/issues"
-  },
-  "engines": {
-    "atom": ">=1.0.0 <2.0.0"
   }
 }
