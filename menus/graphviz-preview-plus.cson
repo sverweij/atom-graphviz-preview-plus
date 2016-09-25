@@ -35,6 +35,3 @@
       ]
     }
   ]
-  #'fdp', 'neato', 'osage', 'twopi'
-  #  '.tree-view .file .name[data-name$=\\.dot]':
-  #   [{label: 'GraphViz Preview (plus)', command:  'graphviz-preview-plus:preview-file'}]
