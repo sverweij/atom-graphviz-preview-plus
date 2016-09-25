@@ -1,9 +1,9 @@
 'menu': [
   'label': 'Packages'
   'submenu': [
-    'label': 'GrapViz Preview (plus)'
+    'label': 'GrapViz preview+'
     'submenu': [
-      {'label': 'Toggle Preview', 'command': 'graphviz-preview-plus:toggle'}
+      {'label': 'Toggle Preview        \u2303\u21E7V', 'command': 'graphviz-preview-plus:toggle'}
       {
         label: 'Select layout engine'
         submenu: [
