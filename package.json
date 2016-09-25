@@ -1,6 +1,6 @@
 {
   "name": "graphviz-preview-plus",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "./lib/main",
   "description": "Open a diagram of the GraphViz dot in the current editor with `ctrl-shift-V`.",
   "repository": {
@@ -30,7 +30,9 @@
     "temp": "0.8.3",
     "wrench": "1.5.9"
   },
-  "package-deps": ["language-dot"],
+  "package-deps": [
+    "language-dot"
+  ],
   "bugs": {
     "url": "https://github.com/sverweij/atom-graphviz-preview-plus/issues"
   }
