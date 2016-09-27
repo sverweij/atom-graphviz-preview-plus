@@ -2,6 +2,7 @@ deHTMLize = (pString) ->
   pString.replace /</g, "&lt;"
 
 formatNumber = (pNumber, pMaxWidth) ->
+  return "" if not pNumber
   lRetval = pNumber.toString()
   lRetval = " ".repeat(pMaxWidth - lRetval.length) + lRetval + " "
 
