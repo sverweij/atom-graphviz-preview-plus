@@ -1,6 +1,6 @@
 {
   "name": "graphviz-preview-plus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./lib/main",
   "description": "Open a diagram of the GraphViz dot in the current editor with `ctrl-shift-V`.",
   "repository": {
