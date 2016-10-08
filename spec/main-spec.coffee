@@ -196,12 +196,12 @@ describe "graphviz preview plus package main", ->
       expectPreviewInSplitPane()
 
       runs ->
-        expect(preview.getTitle()).toBe 'atest.gv preview+'
+        expect(preview.getTitle()).toBe 'atest.gv preview+ (dot)'
         preview.onDidChangeTitle(titleChangedCallback)
         fs.renameSync(atom.workspace.getActiveTextEditor().getPath(), path.join(path.dirname(atom.workspace.getActiveTextEditor().getPath()), 'atest2.gv'))
 
       waitsFor ->
-        preview.getTitle() is "atest2.gv preview+"
+        preview.getTitle() is "atest2.gv preview+ (dot)"
 
       runs ->
         expect(titleChangedCallback).toHaveBeenCalled()

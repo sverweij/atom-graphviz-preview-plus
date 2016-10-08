@@ -229,9 +229,9 @@ class GraphVizPreviewView extends ScrollView
 
   getTitle: ->
     if @file?
-      "#{path.basename(@getPath())} preview+"
+      "#{path.basename(@getPath())} preview+ (#{atom.config.get('graphviz-preview-plus.layoutEngine')})"
     else if @editor?
-      "#{@editor.getTitle()} preview+"
+      "#{@editor.getTitle()} preview+ (#{atom.config.get('graphviz-preview-plus.layoutEngine')})"
     else
       "GraphViz Preview+"
 
@@ -302,6 +302,7 @@ class GraphVizPreviewView extends ScrollView
     return if @loading or not @svg
 
     atom.config.set('graphviz-preview-plus.layoutEngine', pEngine)
+    @emitter.emit 'did-change-title'
 
   # image control functions
   # Retrieves this view's pane.
