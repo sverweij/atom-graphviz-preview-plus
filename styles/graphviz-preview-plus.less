@@ -1,10 +1,13 @@
 @import 'ui-variables';
 @import 'syntax-variables';
+
+@spacing: @component-padding/2;
+@transparent-background-image: "atom://graphviz-preview-plus/assets/transparent-background.png";
+
 .graphviz-preview-plus {
-    color: black;
-    background-color: white;
-    padding-top:2em;
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: @pane-item-background-color;
 
     atom-text-editor {
       // only show scrollbars on hover
@@ -41,6 +44,78 @@
     .error-text {
         color: @text-color;
     }
+
+    // Image Controls -------------------
+
+    .image-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: @spacing;
+      border-bottom: 1px solid @panel-heading-border-color;
+      background-color: @panel-heading-background-color;
+
+      a {
+        display: inline-block;
+        position: relative;
+        width: 24px;
+        height: 24px;
+        margin: @spacing;
+        vertical-align: middle;
+        font-size: 0;
+        border-radius: 22px;
+        border: 2px solid #fff;
+        box-shadow: inset 0 1px 2px hsla(0,0%,0%,.4), 0 0 0 1px hsla(0,0%,0%,.1), 0 2px 2px hsla(0,0%,0%,.2);
+        background-clip: content-box;
+
+        &:hover {
+          border-color: #ccc;
+        }
+        &:active {
+          border-color: #999;
+        }
+      }
+
+      &-color-white {
+        color: #000;
+        background-color: #fff;
+        background-image: url(@transparent-background-image);
+      }
+
+      &-color-black {
+        color: #fff;
+        background-color: #000;
+        background-image: url(@transparent-background-image);
+      }
+
+      .btn-group {
+        margin: @spacing;
+      }
+
+      .reset-zoom-button {
+        min-width: 5em;
+      }
+    }
+
+    // Image -------------------
+
+    .image-container {
+      flex: 1 1 0;
+      display: flex;
+      overflow: auto;
+    }
+
+    // Background color
+    [background="white"] {
+      background-color: white;
+      background-image: url(@transparent-background-image);
+    }
+    [background="black"] {
+      background-color: black;
+      background-image: url(@transparent-background-image);
+    }
+
 }
 
 .dot-spinner {
