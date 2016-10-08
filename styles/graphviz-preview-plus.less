@@ -98,18 +98,12 @@
       }
     }
 
-
     // Image -------------------
 
     .image-container {
       flex: 1 1 0;
       display: flex;
       overflow: auto;
-
-      img {
-        flex: none;
-        margin: auto;
-      }
     }
 
     // Background color
@@ -122,26 +116,6 @@
       background-image: url(@transparent-background-image);
     }
 
-
-
-    // Zoom to fit -------------------
-    // Scales the image to fit the available space.
-
-    .zoom-to-fit {
-      &.image-container {
-        padding: @component-padding;
-
-        img {
-          flex: 1 1 0;
-          min-width: 0;
-          margin: 0;
-
-          // Alternative: object-fit: contain;
-          // then it would also scale larger than its original size
-          object-fit: scale-down;
-        }
-      }
-    }
 }
 
 .dot-spinner {

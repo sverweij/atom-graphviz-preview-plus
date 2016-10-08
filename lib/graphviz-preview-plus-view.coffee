@@ -6,15 +6,15 @@ _                    = require 'underscore-plus'
 fs                   = require 'fs-plus'
 
 # Defer loading these modules until use
-uuid                 = null
 renderer             = null
 errRenderer          = null
 svgToRaster          = null
 
 latestKnownEditorId  = null
-svgWrapperElementId  = null
 
 zoomFactor           = 1
+originalWidth        = 481
+originalHeight       = 481
 
 module.exports =
 class GraphVizPreviewView extends ScrollView
@@ -35,8 +35,7 @@ class GraphVizPreviewView extends ScrollView
         @div class: 'image-controls-group btn-group', =>
           @button class: 'btn', outlet: 'zoomToFitButton', 'Zoom to fit'
 
-      @div class: 'image-container', background: 'white', outlet: 'imageContainer', =>
-        @div outlet: 'image'
+      @div class: 'image-container', background: 'white', outlet: 'imageContainer'
 
   constructor: ({@editorId, @filePath}) ->
     super
@@ -195,17 +194,7 @@ class GraphVizPreviewView extends ScrollView
       Promise.resolve(null)
 
   renderDotText: (text) ->
-    uuid ?= require 'node-uuid'
-    # should be unique within atom to prevent duplicate id's within the
-    # editor (which renders the stuff into the first element only)
-    #
-    # should be unique altogether because upon export they might be placed on the
-    # same page together, and twice the same id is bound to have undesired
-    # effects
-    #
-    # It's good enough to do this once for each editor instance
-    if !svgWrapperElementId? or latestKnownEditorId != @editorId
-      svgWrapperElementId = uuid.v4()
+    if latestKnownEditorId != @editorId
       latestKnownEditorId = @editorId
 
     @svg = null
@@ -217,11 +206,16 @@ class GraphVizPreviewView extends ScrollView
         @loading = false
         @loaded = true
         @svg = svg
-        @image.attr('id', svgWrapperElementId)
-        @image.html(svg)
-        @renderedSVG = @image.find('svg')
+        @imageContainer.html(svg)
+        @renderedSVG = @imageContainer.find('svg')
+        @originalWidth = @renderedSVG.attr('width')
+        @originalHeight = @renderedSVG.attr('height')
 
-        @setZoom @zoomFactor
+        if @mode is 'zoom-to-fit'
+          @renderedSVG.attr('width', '100%')
+          @renderedSVG.attr('height', '100%')
+        else
+          @setZoom @zoomFactor
 
         @emitter.emit 'did-change-graphviz'
         @originalTrigger('graphviz-preview-plus:dot-changed')
@@ -265,11 +259,11 @@ class GraphVizPreviewView extends ScrollView
     errRenderer ?= require './err-renderer'
 
     @getSource().then (source) =>
-      @image.html(errRenderer.renderError source, error.message) if source?
+      @imageContainer.html(errRenderer.renderError source, error.message) if source?
 
   showLoading: ->
     @loading = true
-    @image.html $$$ ->
+    @imageContainer.html $$$ ->
       @div class: 'dot-spinner', 'Rendering graph\u2026'
 
   copyToClipboard: ->
@@ -333,11 +327,12 @@ class GraphVizPreviewView extends ScrollView
 
     if @mode is 'zoom-to-fit'
       @mode = 'zoom-manual'
-      @imageContainer.removeClass 'zoom-to-fit'
       @zoomToFitButton.removeClass 'selected'
     else if @mode is 'reset-zoom'
       @mode = 'zoom-manual'
 
+    @renderedSVG.attr('width', @originalWidth)
+    @renderedSVG.attr('height', @originalHeight)
     @renderedSVG.css('zoom', factor)
     @resetZoomButton.text(Math.round((factor) * 100) + '%')
     @zoomFactor = factor
@@ -347,7 +342,6 @@ class GraphVizPreviewView extends ScrollView
     return unless @loaded and @isVisible()
 
     @mode = 'reset-zoom'
-    @imageContainer.removeClass 'zoom-to-fit'
     @zoomToFitButton.removeClass 'selected'
     @setZoom 1
     @resetZoomButton.text('100%')
@@ -357,12 +351,11 @@ class GraphVizPreviewView extends ScrollView
   zoomToFit: ->
     return unless @loaded and @isVisible()
 
-    @mode = 'zoom-to-fit'
-    @imageContainer.addClass 'zoom-to-fit'
-    @zoomToFitButton.addClass 'selected'
     @setZoom 1
-    @renderedSVG.width('100%')
-    @renderedSVG.height('100%')
+    @mode = 'zoom-to-fit'
+    @zoomToFitButton.addClass 'selected'
+    @renderedSVG.attr('width', '100%')
+    @renderedSVG.attr('height', '100%')
     @resetZoomButton.text('Auto')
 
 
