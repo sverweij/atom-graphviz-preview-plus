@@ -7,6 +7,7 @@
   'cmd--': 'graphviz-preview-plus:zoom-out'
   'cmd-_': 'graphviz-preview-plus:zoom-out'
   'cmd-0': 'graphviz-preview-plus:reset-zoom'
+  'cmd-9': 'graphviz-preview-plus:zoom-to-fit'
 
 '.platform-win32 .graphviz-preview-plus, .platform-linux .graphviz-preview-plus':
   'ctrl-+': 'graphviz-preview-plus:zoom-in'
@@ -14,3 +15,4 @@
   'ctrl--': 'graphviz-preview-plus:zoom-out'
   'ctrl-_': 'graphviz-preview-plus:zoom-out'
   'ctrl-0': 'graphviz-preview-plus:reset-zoom'
+  'ctrl-9': 'graphviz-preview-plus:zoom-to-fit'
