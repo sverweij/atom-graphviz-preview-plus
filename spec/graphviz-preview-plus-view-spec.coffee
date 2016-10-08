@@ -100,6 +100,60 @@ describe "graphviz preview plus package view", ->
       runs ->
         expect(atom.clipboard.read()).toContain """<svg """
 
+  describe "zoom functions", ->
+    previewPaneItem = null
+
+    beforeEach ->
+      fixturesPath = path.join(__dirname, 'fixtures')
+      tempPath = temp.mkdirSync('atom')
+      wrench.copyDirSyncRecursive(fixturesPath, tempPath, forceDelete: true)
+      atom.project.setPaths([tempPath])
+
+      jasmine.useRealClock()
+
+      workspaceElement = atom.views.getView(atom.workspace)
+      jasmine.attachToDOM(workspaceElement)
+
+      waitsForPromise ->
+        atom.workspace.open('subdir/序列圖.gv')
+      runs ->
+        atom.commands.dispatch workspaceElement, 'graphviz-preview-plus:toggle'
+      waitsFor ->
+        previewPaneItem = atom.workspace.getPanes()[1].getActiveItem()
+
+    it "3x graphviz-preview-plus:zoom-in increases the image size by 30%", ->
+      atom.commands.dispatch previewPaneItem.element, 'graphviz-preview-plus:zoom-in'
+      atom.commands.dispatch previewPaneItem.element, 'graphviz-preview-plus:zoom-in'
+      atom.commands.dispatch previewPaneItem.element, 'graphviz-preview-plus:zoom-in'
+      lSvg = previewPaneItem.imageContainer.find('svg')[0]
+      expect(lSvg.style.zoom).toBe '1.3'
+
+    it "2x graphviz-preview-plus:zoom-out decreases the image size by 20%", ->
+      atom.commands.dispatch previewPaneItem.element, 'graphviz-preview-plus:zoom-out'
+      atom.commands.dispatch previewPaneItem.element, 'graphviz-preview-plus:zoom-out'
+      lSvg = previewPaneItem.imageContainer.find('svg')[0]
+      expect(lSvg.style.zoom).toBe '0.8'
+
+    it "graphviz-preview-plus:reset-zoom resets zoom after size change", ->
+      atom.commands.dispatch previewPaneItem.element, 'graphviz-preview-plus:zoom-out'
+      atom.commands.dispatch previewPaneItem.element, 'graphviz-preview-plus:reset-zoom'
+      lSvg = previewPaneItem.imageContainer.find('svg')[0]
+      expect(lSvg.style.zoom).toBe '1'
+
+    it "graphviz-preview-plus:reset-zoom resets zoom after zoom-to-fit", ->
+      atom.commands.dispatch previewPaneItem.element, 'graphviz-preview-plus:zoom-to-fit'
+      atom.commands.dispatch previewPaneItem.element, 'graphviz-preview-plus:reset-zoom'
+      lSvg = previewPaneItem.imageContainer.find('svg')[0]
+      expect(lSvg.style.zoom).toBe '1'
+      expect(lSvg.getAttribute('width')).toBe '200pt'
+
+    it "graphviz-preview-plus:zoom-to-fit zooms to fit", ->
+      atom.commands.dispatch previewPaneItem.element, 'graphviz-preview-plus:zoom-to-fit'
+      lSvg = previewPaneItem.imageContainer.find('svg')[0]
+      console.log lSvg.getAttribute('width')
+      expect(lSvg.style.zoom).toBe '1'
+      expect(lSvg.getAttribute('width')).toBe '100%'
+
   describe "when core:save-as is triggered", ->
     beforeEach ->
       fixturesPath = path.join(__dirname, 'fixtures')

@@ -161,6 +161,7 @@ class GraphVizPreviewView extends ScrollView
       'graphviz-preview-plus:zoom-in': => @zoomIn()
       'graphviz-preview-plus:zoom-out': => @zoomOut()
       'graphviz-preview-plus:reset-zoom': => @resetZoom()
+      'graphviz-preview-plus:zoom-to-fit': => @zoomToFit()
 
     changeHandler = =>
       @renderDot()
@@ -357,7 +358,6 @@ class GraphVizPreviewView extends ScrollView
     @renderedSVG.attr('width', '100%')
     @renderedSVG.attr('height', '100%')
     @resetZoomButton.text('Auto')
-
 
   # Changes the background color of the image view.
   #
