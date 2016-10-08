@@ -14,10 +14,29 @@ svgToRaster          = null
 latestKnownEditorId  = null
 svgWrapperElementId  = null
 
+zoomFactor           = 1
+
 module.exports =
 class GraphVizPreviewView extends ScrollView
   @content: ->
-    @div class: 'graphviz-preview-plus native-key-bindings', tabindex: -1
+    @div class: 'graphviz-preview-plus native-key-bindings', tabindex: -1, =>
+      @div class: 'image-controls', outlet: 'imageControls', =>
+        @div class: 'image-controls-group', =>
+          @a outlet: 'whiteTransparentBackgroundButton', class: 'image-controls-color-white', value: 'white', =>
+            @text 'white'
+          @a outlet: 'blackTransparentBackgroundButton', class: 'image-controls-color-black', value: 'black', =>
+            @text 'black'
+          @a outlet: 'transparentTransparentBackgroundButton', class: 'image-controls-color-transparent', value: 'transparent', =>
+            @text 'transparent'
+        @div class: 'image-controls-group btn-group', =>
+          @button class: 'btn', outlet: 'zoomOutButton', '-'
+          @button class: 'btn reset-zoom-button', outlet: 'resetZoomButton', '100%'
+          @button class: 'btn', outlet: 'zoomInButton', '+'
+        @div class: 'image-controls-group btn-group', =>
+          @button class: 'btn', outlet: 'zoomToFitButton', 'Zoom to fit'
+
+      @div class: 'image-container', background: 'white', outlet: 'imageContainer', =>
+        @div outlet: 'image'
 
   constructor: ({@editorId, @filePath}) ->
     super
@@ -25,6 +44,15 @@ class GraphVizPreviewView extends ScrollView
     @disposables = new CompositeDisposable
     @loaded = false
     @svg = null
+
+    @disposables.add atom.tooltips.add @whiteTransparentBackgroundButton[0], title: "Use white transparent background"
+    @disposables.add atom.tooltips.add @blackTransparentBackgroundButton[0], title: "Use black transparent background"
+    @disposables.add atom.tooltips.add @transparentTransparentBackgroundButton[0], title: "Use transparent background"
+
+    @zoomInButton.on 'click', => @zoomIn()
+    @zoomOutButton.on 'click', => @zoomOut()
+    @resetZoomButton.on 'click', => @resetZoom()
+    @zoomToFitButton.on 'click', => @zoomToFit()
 
   attached: ->
     return if @isAttached
@@ -38,6 +66,10 @@ class GraphVizPreviewView extends ScrollView
       else
         @disposables.add atom.packages.onDidActivateInitialPackages =>
           @subscribeToFilePath(@filePath)
+
+    if @getPane()
+      @imageControls.find('a').on 'click', (e) =>
+        @changeBackground $(e.target).attr 'value'
 
   serialize: ->
     deserializer: 'GraphVizPreviewView'
@@ -127,14 +159,9 @@ class GraphVizPreviewView extends ScrollView
         @renderDot()
       'core:copy': (event) =>
         event.stopPropagation() if @copyToClipboard()
-      'graphviz-preview-plus:zoom-in': =>
-        zoomLevel = parseFloat(@css('zoom')) or 1
-        @css('zoom', zoomLevel + .1)
-      'graphviz-preview-plus:zoom-out': =>
-        zoomLevel = parseFloat(@css('zoom')) or 1
-        @css('zoom', zoomLevel - .1)
-      'graphviz-preview-plus:reset-zoom': =>
-        @css('zoom', 1)
+      'graphviz-preview-plus:zoom-in': => @zoomIn()
+      'graphviz-preview-plus:zoom-out': => @zoomOut()
+      'graphviz-preview-plus:reset-zoom': => @resetZoom()
 
     changeHandler = =>
       @renderDot()
@@ -190,7 +217,12 @@ class GraphVizPreviewView extends ScrollView
         @loading = false
         @loaded = true
         @svg = svg
-        @html("<div id=#{svgWrapperElementId}>#{svg}</div>")
+        @image.attr('id', svgWrapperElementId)
+        @image.html(svg)
+        @renderedSVG = @image.find('svg')
+
+        @setZoom @zoomFactor
+
         @emitter.emit 'did-change-graphviz'
         @originalTrigger('graphviz-preview-plus:dot-changed')
 
@@ -233,11 +265,11 @@ class GraphVizPreviewView extends ScrollView
     errRenderer ?= require './err-renderer'
 
     @getSource().then (source) =>
-      @html(errRenderer.renderError source, error.message) if source?
+      @image.html(errRenderer.renderError source, error.message) if source?
 
   showLoading: ->
     @loading = true
-    @html $$$ ->
+    @image.html $$$ ->
       @div class: 'dot-spinner', 'Rendering graph\u2026'
 
   copyToClipboard: ->
@@ -275,6 +307,71 @@ class GraphVizPreviewView extends ScrollView
     return if @loading or not @svg
 
     atom.config.set('graphviz-preview-plus.layoutEngine', pEngine)
+
+  # image control functions
+  # Retrieves this view's pane.
+  #
+  # Returns a {Pane}.
+  getPane: ->
+    @parents('.pane')[0]
+
+  zoomOut: ->
+    @adjustZoom -.1
+
+  zoomIn: ->
+    @adjustZoom .1
+
+  adjustZoom: (delta)->
+    zoomLevel = parseFloat(@renderedSVG.css('zoom')) or 1
+    if (zoomLevel + delta) > 0
+      @setZoom (zoomLevel + delta)
+
+  setZoom: (factor) ->
+    return unless @loaded and @isVisible()
+
+    factor ?= 1
+
+    if @mode is 'zoom-to-fit'
+      @mode = 'zoom-manual'
+      @imageContainer.removeClass 'zoom-to-fit'
+      @zoomToFitButton.removeClass 'selected'
+    else if @mode is 'reset-zoom'
+      @mode = 'zoom-manual'
+
+    @renderedSVG.css('zoom', factor)
+    @resetZoomButton.text(Math.round((factor) * 100) + '%')
+    @zoomFactor = factor
+
+  # Zooms the image to its normal width and height.
+  resetZoom: ->
+    return unless @loaded and @isVisible()
+
+    @mode = 'reset-zoom'
+    @imageContainer.removeClass 'zoom-to-fit'
+    @zoomToFitButton.removeClass 'selected'
+    @setZoom 1
+    @resetZoomButton.text('100%')
+
+
+  # Zooms to fit the image, doesn't scale beyond actual size
+  zoomToFit: ->
+    return unless @loaded and @isVisible()
+
+    @mode = 'zoom-to-fit'
+    @imageContainer.addClass 'zoom-to-fit'
+    @zoomToFitButton.addClass 'selected'
+    @setZoom 1
+    @renderedSVG.width('100%')
+    @renderedSVG.height('100%')
+    @resetZoomButton.text('Auto')
+
+
+  # Changes the background color of the image view.
+  #
+  # color - A {String} that gets used as class name.
+  changeBackground: (color) ->
+    return unless @loaded and @isVisible() and color
+    @imageContainer.attr('background', color)
 
   isEqual: (other) ->
     @[0] is other?[0] # Compare DOM elements
