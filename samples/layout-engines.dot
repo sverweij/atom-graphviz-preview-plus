@@ -1,14 +1,20 @@
 graph "Layout Engines" {
+  bgcolor=transparent
+  fontcolor=grey
   label="GraphViz layout engines"
-  fontname=Helvetica fontsize=10
-  size="4.2,4.2"
+  fontname=Helvetica
+  fontsize=10
 
   node[
-        shape=oval
-        style=filled fillcolor="black:#FFDDDD" color=transparent  margin=0
-        fontname=Helvetica fontsize=10 penwidth=2 fontcolor=white
+    shape=oval
+    style=filled
+    fillcolor="black:#FFDDDD"
+    color=transparent
+    margin=0
+    fontname=Helvetica fontsize=10 fontcolor=white
+    penwidth=2
   ]
-  edge[color="#770000"]
+  edge[color="grey"]
 
   "layout\nengines " -- {
     dot circo fdp neato osage twopi
