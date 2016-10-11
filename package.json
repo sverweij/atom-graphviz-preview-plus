@@ -2,7 +2,7 @@
   "name": "graphviz-preview-plus",
   "version": "1.1.0",
   "main": "./lib/main",
-  "description": "Open a diagram of the GraphViz dot in the current editor with `ctrl-shift-V`.",
+  "description": "Write and preview GraphViz dot. Shortcut: `ctrl-shift-V`.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sverweij/atom-graphviz-preview-plus"

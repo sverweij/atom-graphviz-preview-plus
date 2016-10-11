@@ -1,6 +1,6 @@
 # GraphViz preview+
 
-Shows the rendered version of the GraphViz dot in your editor when you press `ctrl-shift-V`.
+Write and preview GraphViz dot. Shortcut: `ctrl-shift-V`.
 
 Enabled for `.dot` files
 
