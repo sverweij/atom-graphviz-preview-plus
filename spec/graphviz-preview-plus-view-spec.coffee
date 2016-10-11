@@ -6,7 +6,7 @@ GraphVizPreviewView = require '../lib/graphviz-preview-plus-view'
 grammarHelper    = require './grammarHelper'
 
 describe "graphviz preview plus package view", ->
-  [file, preview, workspaceElement] = []
+  [preview, workspaceElement] = []
 
   beforeEach ->
     @grammarDisposable = grammarHelper.makeSureGrammarExists()

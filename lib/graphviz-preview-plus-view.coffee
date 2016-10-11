@@ -12,12 +12,9 @@ svgToRaster          = null
 
 latestKnownEditorId  = null
 
-zoomFactor           = 1
-originalWidth        = 481
-originalHeight       = 481
-
 module.exports =
 class GraphVizPreviewView extends ScrollView
+
   @content: ->
     @div class: 'graphviz-preview-plus native-key-bindings', tabindex: -1, =>
       @div class: 'image-controls', outlet: 'imageControls', =>
@@ -39,10 +36,15 @@ class GraphVizPreviewView extends ScrollView
 
   constructor: ({@editorId, @filePath}) ->
     super
-    @emitter = new Emitter
-    @disposables = new CompositeDisposable
-    @loaded = false
-    @svg = null
+    @emitter        = new Emitter
+    @disposables    = new CompositeDisposable
+    @loaded         = false
+    @svg            = null
+    @zoomFactor     = 1
+    @renderedSVG    = null
+    @originalWidth  = 481
+    @originalHeight = 481
+    @mode           = 'zoom-manual'
 
     @disposables.add atom.tooltips.add @whiteTransparentBackgroundButton[0], title: "Use white transparent background"
     @disposables.add atom.tooltips.add @blackTransparentBackgroundButton[0], title: "Use black transparent background"
@@ -81,7 +83,7 @@ class GraphVizPreviewView extends ScrollView
   onDidChangeTitle: (callback) ->
     @emitter.on 'did-change-title', callback
 
-  onDidChangeModified: (callback) ->
+  onDidChangeModified: () ->
     # No op to suppress deprecation warning
     new Disposable
 
@@ -233,7 +235,7 @@ class GraphVizPreviewView extends ScrollView
     else if @editor?
       "#{@editor.getTitle()} preview+ (#{atom.config.get('graphviz-preview-plus.layoutEngine')})"
     else
-      "GraphViz Preview+"
+      "GraphViz preview+"
 
   getIconName: ->
     "GraphViz"
@@ -349,7 +351,7 @@ class GraphVizPreviewView extends ScrollView
     @resetZoomButton.text('100%')
 
 
-  # Zooms to fit the image, doesn't scale beyond actual size
+  # Zooms to fit the image
   zoomToFit: ->
     return unless @loaded and @isVisible()
 

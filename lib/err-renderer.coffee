@@ -1,12 +1,9 @@
-deHTMLize = (pString) ->
-  pString.replace /</g, "&lt;"
-
 formatNumber = (pNumber, pMaxWidth) ->
   return "" if not pNumber
   lRetval = pNumber.toString()
   lRetval = " ".repeat(pMaxWidth - lRetval.length) + lRetval + " "
 
-formatLine = (pLine, pIndex, pCol) ->
+formatLine = (pLine, pIndex) ->
   "#{formatNumber pIndex, 3}#{ pLine }"
 
 getLineNumber = (pErrorString) ->

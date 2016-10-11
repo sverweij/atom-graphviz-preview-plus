@@ -1,10 +1,9 @@
-path             = require 'path'
-fs               = require 'fs-plus'
-temp             = require 'temp'
-wrench           = require 'wrench'
+path                = require 'path'
+fs                  = require 'fs-plus'
+temp                = require 'temp'
+wrench              = require 'wrench'
 GraphVizPreviewView = require '../lib/graphviz-preview-plus-view'
-{$}              = require 'atom-space-pen-views'
-grammarHelper    = require './grammarHelper'
+grammarHelper       = require './grammarHelper'
 
 describe "graphviz preview plus package main", ->
   [workspaceElement, preview] = []
@@ -84,7 +83,7 @@ describe "graphviz preview plus package main", ->
       expect(previewPane.getActiveItem()).toBeUndefined()
 
     it "closes the existing preview when toggle is triggered on it and it has focus", ->
-      [editorPane, previewPane] = atom.workspace.getPanes()
+      previewPane = atom.workspace.getPanes()[1]
       previewPane.activate()
 
       atom.commands.dispatch workspaceElement, 'graphviz-preview-plus:toggle'
