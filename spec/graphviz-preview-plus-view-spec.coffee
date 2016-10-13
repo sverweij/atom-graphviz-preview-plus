@@ -1,7 +1,6 @@
 path             = require 'path'
 fs               = require 'fs-plus'
 temp             = require 'temp'
-wrench           = require 'wrench'
 GraphVizPreviewView = require '../lib/graphviz-preview-plus-view'
 grammarHelper    = require './grammarHelper'
 
@@ -74,7 +73,7 @@ describe "graphviz preview plus package view", ->
     beforeEach ->
       fixturesPath = path.join(__dirname, 'fixtures')
       tempPath = temp.mkdirSync('atom')
-      wrench.copyDirSyncRecursive(fixturesPath, tempPath, forceDelete: true)
+      fs.copySync(fixturesPath, tempPath)
       atom.project.setPaths([tempPath])
 
       jasmine.useRealClock()
@@ -106,7 +105,7 @@ describe "graphviz preview plus package view", ->
     beforeEach ->
       fixturesPath = path.join(__dirname, 'fixtures')
       tempPath = temp.mkdirSync('atom')
-      wrench.copyDirSyncRecursive(fixturesPath, tempPath, forceDelete: true)
+      fs.copySync(fixturesPath, tempPath)
       atom.project.setPaths([tempPath])
 
       jasmine.useRealClock()
@@ -150,7 +149,6 @@ describe "graphviz preview plus package view", ->
     it "graphviz-preview-plus:zoom-to-fit zooms to fit", ->
       atom.commands.dispatch previewPaneItem.element, 'graphviz-preview-plus:zoom-to-fit'
       lSvg = previewPaneItem.imageContainer.find('svg')[0]
-      console.log lSvg.getAttribute('width')
       expect(lSvg.style.zoom).toBe '1'
       expect(lSvg.getAttribute('width')).toBe '100%'
 
@@ -158,7 +156,7 @@ describe "graphviz preview plus package view", ->
     beforeEach ->
       fixturesPath = path.join(__dirname, 'fixtures')
       tempPath = temp.mkdirSync('atom')
-      wrench.copyDirSyncRecursive(fixturesPath, tempPath, forceDelete: true)
+      fs.copySync(fixturesPath, tempPath)
       atom.project.setPaths([tempPath])
 
       jasmine.useRealClock()
