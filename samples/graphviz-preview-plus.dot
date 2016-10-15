@@ -1,6 +1,6 @@
 /* lays out best with twopi */
 graph "GraphViz preview plus" {
-    fontname=Helvetica fontsize=12 penwidth=2.0 overlap=auto
+    fontname=Helvetica fontsize=12 penwidth=2.0 overlap=auto bgcolor="white:#cc9999"
     node[shape=Mrecord fontname=Helvetica fontsize=12 style=bold]
 
     "GraphViz preview+" [shape=oval fontsize=14 style=bold  fontcolor=black]
