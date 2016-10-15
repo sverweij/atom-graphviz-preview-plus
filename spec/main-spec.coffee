@@ -1,7 +1,6 @@
 path                = require 'path'
 fs                  = require 'fs-plus'
 temp                = require 'temp'
-wrench              = require 'wrench'
 GraphVizPreviewView = require '../lib/graphviz-preview-plus-view'
 grammarHelper       = require './grammarHelper'
 
@@ -13,7 +12,7 @@ describe "graphviz preview plus package main", ->
 
     fixturesPath = path.join(__dirname, 'fixtures')
     tempPath = temp.mkdirSync('atom')
-    wrench.copyDirSyncRecursive(fixturesPath, tempPath, forceDelete: true)
+    fs.copySync(fixturesPath, tempPath)
     atom.project.setPaths([tempPath])
 
     jasmine.useRealClock()
