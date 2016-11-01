@@ -17,6 +17,8 @@ Enabled for `.dot` files
 (the only one in `apm` at the moment). If it's not installed, GraphViz preview+ will take care of the installation.
 - Uses **[viz.js](https://github.com/mdaines/viz.js)** package for parsing and
   rendering, so no need to have graphviz installed.
+- If you _do_ prefer to use the original graphviz program and bypass viz.js
+  (e.g. because it's faster), you can choose to do so in the settings.
 
 ## Why another GraphViz previewer?
 Because I needed one.

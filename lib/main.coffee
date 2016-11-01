@@ -23,10 +23,15 @@ module.exports =
       default: true
       order: 2
       description: 'Open the preview in a split pane. If disabled, the preview is opened in a new tab in the same pane.'
+    useGraphvizCommandLine:
+      type: 'boolean'
+      default: false
+      order: 3
+      description: '**Experimental** Keep unchecked when in doubt.<br><br>- Checked: graphviz-preview-plus will use the command line version of GraphViz dot. For this to work GraphViz has to be installed on your machine, and it has to be on your path.<br>- Unchecked: graphviz-preview-plus will use viz.js for rendering.'
     layoutEngine:
       type: 'string'
       default: 'dot'
-      order: 3
+      order: 4
       description: ' GraphViz Layout engine to use.'
       enum: ['dot', 'circo', 'fdp', 'neato', 'osage', 'twopi']
 
