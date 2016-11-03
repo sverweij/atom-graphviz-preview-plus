@@ -28,10 +28,15 @@ module.exports =
       default: false
       order: 3
       description: '**Experimental** Keep unchecked when in doubt.<br><br>- Checked: graphviz-preview-plus will use the command line version of GraphViz dot. For this to work GraphViz has to be installed on your machine, and it has to be on your path.<br>- Unchecked: graphviz-preview-plus will use viz.js for rendering.'
+    GraphvizPath:
+      type: 'string'
+      default: ''
+      order: 4
+      description: '**Experimental** If you use the command line version of GraphViz, and GraphViz is not on your _path_, you can use this to specify where to find the executable (including the name of the executable e.g. `/Users/christiaanhuygens/bin/dot`).<br><br>Leave empty when it\'s on your path.'
     layoutEngine:
       type: 'string'
       default: 'dot'
-      order: 4
+      order: 5
       description: ' GraphViz Layout engine to use.'
       enum: ['dot', 'circo', 'fdp', 'neato', 'osage', 'twopi']
 
