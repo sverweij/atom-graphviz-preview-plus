@@ -1,8 +1,8 @@
 spawn = require('child_process').spawn
 
 exports.render = (pDot, pCallback, pOptions) ->
-  lOptions = Object.assign({engine: "dot", exec: "dot"}, pOptions)
-  dot = spawn(lOptions.exec, ["-Tsvg", "-K#{lOptions.engine}"])
+  lOptions = Object.assign({outputType: 'svg', engine: 'dot', exec: 'dot'}, pOptions)
+  dot = spawn(lOptions.exec, ["-T#{lOptions.outputType}", "-K#{lOptions.engine}"])
   lData = ''
   lError = null
 
@@ -15,11 +15,11 @@ exports.render = (pDot, pCallback, pOptions) ->
 
   dot.on('error', (pError) -> lError = pError)
 
-  dot.on 'close', (code) ->
+  dot.on 'close', (pCode) ->
      #  0: okeleedokelee
      #  1: error in the program
      # -2: executable not found
-    if (code == 0)
+    if (pCode == 0)
       pCallback(null, lData)
     else if (lError)
       if (lError instanceof Buffer)
@@ -27,4 +27,4 @@ exports.render = (pDot, pCallback, pOptions) ->
       else
         pCallback({message: lError})
     else
-      pCallback({message: 'Unexpected error occurred. Exit code ${code}'})
+      pCallback({message: "Unexpected error occurred. Exit code #{pCode}"})
