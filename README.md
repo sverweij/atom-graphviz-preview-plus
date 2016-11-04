@@ -12,13 +12,14 @@ Enabled for `.dot` files
 - **PNG export** - to file
 - **Switch** the GraphViz **layout engine**. GraphViz Preview+ will
   remember the last one you used.
-- For syntax hihglighting we recommend
-[language-dot](https://github.com/AdoPi/language-dot)
-(the only one in `apm` at the moment). If it's not installed, GraphViz preview+ will take care of the installation.
+- For syntax hihglighting we recommend 
+  [language-dot](https://github.com/AdoPi/language-dot) (the only one in 
+  `apm` at the moment). If it's not installed, GraphViz preview+ will take
+  care of the installation.
 - Uses **[viz.js](https://github.com/mdaines/viz.js)** package for parsing and
   rendering, so no need to have graphviz installed.
-- Can optionally use the original graphviz program; just tick the 
-  _use GraphViz command line_ option in the settings.
+- _Can_ use the original graphviz command line version if you want it to; 
+  tick the _use GraphViz command line_ option in the settings 
 
 ## Why another GraphViz previewer?
 Because I needed one.
@@ -39,8 +40,8 @@ to implement, usually with just a few lines of code.
 
 ## License information
 - This software is free software [licensed under GPL-3.0](LICENSE.md). This means
-(a.o.) you _can_ use it as part of other free software, but _not_ as part of
-non free software.
+  (a.o.) you _can_ use it as part of other free software, but _not_ as part of
+  non free software.
 - viz.js is [BSD](https://github.com/mdaines/viz.js/blob/master/LICENSE) licensed,
 - GraphViz is licensed under the [EPL](http://graphviz.org/License.php).
 
