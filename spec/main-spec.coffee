@@ -199,7 +199,7 @@ describe "graphviz preview plus package main", ->
         fs.renameSync(atom.workspace.getActiveTextEditor().getPath(), path.join(path.dirname(atom.workspace.getActiveTextEditor().getPath()), 'atest2.gv'))
 
       waitsFor ->
-        preview.getTitle() is "atest2.gv preview+ (dot)"
+        preview.getTitle().endsWith "atest2.gv preview+ (dot)"
 
       runs ->
         expect(titleChangedCallback).toHaveBeenCalled()
