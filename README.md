@@ -47,5 +47,6 @@ to implement, usually with just a few lines of code.
 
 ## Build status
 [![Build Status](https://travis-ci.org/sverweij/atom-graphviz-preview-plus.svg?branch=master)](https://travis-ci.org/sverweij/atom-graphviz-preview-plus)
+[![Build status](https://ci.appveyor.com/api/projects/status/i4dlprwi46rja2ve/branch/master?svg=true)](https://ci.appveyor.com/project/sverweij/atom-graphviz-preview-plus/branch/master)
 [![Dependency Status](https://david-dm.org/sverweij/atom-graphviz-preview-plus.svg)](https://david-dm.org/sverweij/atom-graphviz-preview-plus)
 [![devDependency Status](https://david-dm.org/sverweij/atom-graphviz-preview-plus/dev-status.svg)](https://david-dm.org/sverweij/atom-graphviz-preview-plus#info=devDependencies)
