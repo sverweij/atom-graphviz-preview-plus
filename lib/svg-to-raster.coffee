@@ -20,4 +20,4 @@ exports.transform = (pSVG, pCallback, pRasterType='png') ->
     lDataURL = lCanvas.toDataURL pRasterType, 0.8
 
     # extract the base64 encoded image, decode and return it
-    pCallback(new Buffer(lDataURL.replace('data:image/png;base64,', ''), 'base64'))
+    pCallback(Buffer.from(lDataURL.replace('data:image/png;base64,', ''), 'base64'))
