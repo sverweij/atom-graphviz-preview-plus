@@ -73,7 +73,7 @@ class GraphVizPreviewView extends ScrollView
         @changeBackground $(e.target).attr 'value'
 
   serialize: ->
-    deserializer: 'GraphVizPreviewView'
+    deserializer: 'deserializeGraphVizPreviewView'
     filePath: @getPath() ? @filePath
     editorId: @editorId
 
@@ -373,6 +373,3 @@ class GraphVizPreviewView extends ScrollView
   changeBackground: (color) ->
     return unless @loaded and @isVisible() and color
     @imageContainer.attr('background', color)
-
-  isEqual: (other) ->
-    @[0] is other?[0] # Compare DOM elements

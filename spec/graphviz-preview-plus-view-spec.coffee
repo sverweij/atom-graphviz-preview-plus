@@ -35,23 +35,10 @@ describe "graphviz preview plus package view", ->
     afterEach ->
       newPreview?.destroy()
 
-    # TDOO deserialization not implemented
-    xit "recreates the preview when serialized/deserialized", ->
+    it "recreates the preview when serialized/deserialized", ->
       newPreview = atom.deserializers.deserialize(preview.serialize())
       jasmine.attachToDOM(newPreview.element)
       expect(newPreview.getPath()).toBe preview.getPath()
-
-    it "does not recreate a preview when the file no longer exists", ->
-      filePath = path.join(temp.mkdirSync('graphviz-preview-plus-'), 'foo.gv')
-      fs.writeFileSync(filePath, '# Hi')
-
-      preview.destroy()
-      preview = new GraphVizPreviewView({filePath})
-      serialized = preview.serialize()
-      fs.removeSync(filePath)
-
-      newPreview = atom.deserializers.deserialize(serialized)
-      expect(newPreview).toBeUndefined()
 
     it "serializes the editor id when opened for an editor", ->
       preview.destroy()

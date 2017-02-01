@@ -40,12 +40,16 @@ module.exports =
       description: ' GraphViz Layout engine to use.'
       enum: ['dot', 'circo', 'fdp', 'neato', 'osage', 'twopi']
 
+  deserialize: (pState) ->
+    createGraphVizPreviewView pState
+
   activate: ->
     atom.deserializers.add
       name: 'GraphVizPreviewView'
       deserialize: (state) ->
         if state.editorId or fs.isFileSync(state.filePath)
           createGraphVizPreviewView(state)
+
     atom.commands.add 'atom-workspace',
       'graphviz-preview-plus:toggle': =>
         @toggle()

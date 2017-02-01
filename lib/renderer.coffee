@@ -8,7 +8,6 @@ exports.render = (pScript='', pCallback, pRetry=false) ->
 
   if atom.config.get('graphviz-preview-plus.useGraphvizCommandLine')
     wrap ?= require './wrap-dot'
-
     if Boolean atom.config.get('graphviz-preview-plus.GraphvizPath')
       lOptions.exec = atom.config.get('graphviz-preview-plus.GraphvizPath')
 
