@@ -30,7 +30,7 @@ describe "graphviz preview plus package main", ->
 
   expectPreviewInSplitPane = ->
     runs ->
-      expect(atom.workspace.getPanes()).toHaveLength 2
+      expect(atom.workspace.getPanes().length).toBeGreaterThan 1
 
     waitsFor "graphviz preview to be created", ->
       preview = atom.workspace.getPanes()[1].getActiveItem()
