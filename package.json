@@ -28,8 +28,6 @@
     "viz.js": "1.3.0"
   },
   "devDependencies": {
-    "coffeelint": "1.16.0",
-    "coffeescope2": "0.4.5",
     "eslint": "3.19.0",
     "temp": "0.8.3"
   },
