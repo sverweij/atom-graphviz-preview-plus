@@ -2,7 +2,7 @@
 
 Write and preview GraphViz dot. Shortcut: `ctrl-shift-V`.
 
-Enabled for `.dot` files
+Enabled for `.dot` and `.gv` files
 
 ![animated gif demoing live preview](https://raw.githubusercontent.com/sverweij/atom-graphviz-preview-plus/master/assets/graphviz-preview-plus.gif)
 
@@ -12,14 +12,14 @@ Enabled for `.dot` files
 - **PNG export** - to file
 - **Switch** the GraphViz **layout engine**. GraphViz Preview+ will
   remember the last one you used.
-- For syntax hihglighting we recommend 
-  [language-dot](https://github.com/AdoPi/language-dot) (the only one in 
+- For syntax hihglighting we recommend
+  [language-dot](https://github.com/AdoPi/language-dot) (the only one in
   `apm` at the moment). If it's not installed, GraphViz preview+ will take
   care of the installation.
 - Uses **[viz.js](https://github.com/mdaines/viz.js)** package for parsing and
   rendering, so no need to have graphviz installed.
-- _Can_ use the original graphviz command line version if you want it to; 
-  tick the _use GraphViz command line_ option in the settings 
+- _Can_ use the original graphviz command line version if you want it to;
+  tick the _use GraphViz command line_ option in the settings
 
 ## Why another GraphViz previewer?
 Because I needed one.
