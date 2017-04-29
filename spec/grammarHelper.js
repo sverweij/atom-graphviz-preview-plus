@@ -5,10 +5,9 @@ import path from 'path';
 exports.makeSureGrammarExists = function() {
     let lDisposable = null;
 
-    if (atom.workspace.grammarRegistry
+    if (!atom.workspace.grammarRegistry
         .getGrammars()
-        .filter(g => g.scopeName === 'source.gv')
-        .length === 0
+        .some(g => g.scopeName === 'source.gv')
     ) {
         lDisposable = atom.workspace.grammarRegistry.addGrammar(
             atom.workspace.grammarRegistry.readGrammarSync(
