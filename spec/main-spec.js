@@ -4,14 +4,14 @@ import path from 'path';
 import fs from 'fs-plus';
 import temp from 'temp';
 import GraphVizPreviewView from '../lib/graphviz-preview-plus-view';
-import grammarHelper from './grammarHelper';
+import {makeSureGrammarExists} from './grammarHelper';
 
 describe("graphviz preview plus package main", () => {
     let expectPreviewInSplitPane = null;
     let preview = null;
     let workspaceElement = null;
     beforeEach(function() {
-        this.grammarDisposable = grammarHelper.makeSureGrammarExists();
+        this.grammarDisposable = makeSureGrammarExists();
         const fixturesPath = path.join(__dirname, 'fixtures');
         const tempPath = temp.mkdirSync('atom');
         fs.copySync(fixturesPath, tempPath);
@@ -89,14 +89,14 @@ describe("graphviz preview plus package main", () => {
         describe("when the editor is modified", () => {
             it("re-renders the preview", () => {
                 spyOn(preview, 'showLoading');
-                let mscEditor = atom.workspace.getActiveTextEditor();
+                const mscEditor = atom.workspace.getActiveTextEditor();
                 mscEditor.setText("a note a: made in Holland;");
                 waitsFor(() => preview.text().includes("a note a: made in Holland;"));
                 runs(() => expect(preview.showLoading).not.toHaveBeenCalled());
             });
             xit("invokes ::onDidChangeMsc listeners", () => {
                 let listener = null;
-                let mscEditor = atom.workspace.getActiveTextEditor();
+                const mscEditor = atom.workspace.getActiveTextEditor();
 
                 preview.onDidChangeMsc(listener = jasmine.createSpy('didChangeMscListener'));
                 runs(() => mscEditor.setText("a note a: made in Holland;"));
@@ -104,8 +104,8 @@ describe("graphviz preview plus package main", () => {
             });
             describe("when the preview is in the active pane but is not the active item", () =>
                 it("re-renders the preview but does not make it active", () => {
-                    let mscEditor = atom.workspace.getActiveTextEditor();
-                    let previewPane = atom.workspace.getPanes()[1];
+                    const mscEditor = atom.workspace.getActiveTextEditor();
+                    const previewPane = atom.workspace.getPanes()[1];
 
                     previewPane.activate();
                     waitsForPromise(() => atom.workspace.open());
@@ -119,10 +119,10 @@ describe("graphviz preview plus package main", () => {
             );
             describe("when the preview is not the active item and not in the active pane", () =>
                 it("re-renders the preview and makes it active", () => {
-                    let mscEditor = atom.workspace.getActiveTextEditor();
+                    const mscEditor = atom.workspace.getActiveTextEditor();
                     const lPanes = atom.workspace.getPanes();
-                    let editorPane = lPanes[0];
-                    let previewPane = lPanes[1];
+                    const editorPane = lPanes[0];
+                    const previewPane = lPanes[1];
 
                     previewPane.splitRight({
                         copyActiveItem: true
@@ -143,7 +143,7 @@ describe("graphviz preview plus package main", () => {
             describe("when the liveUpdate config is set to false", () =>
                 it("only re-renders the graphviz when the editor is saved, not when the contents are modified", () => {
                     atom.config.set('graphviz-preview-plus.liveUpdate', false);
-                    let didStopChangingHandler = jasmine.createSpy('didStopChangingHandler');
+                    const didStopChangingHandler = jasmine.createSpy('didStopChangingHandler');
 
                     atom.workspace.getActiveTextEditor().getBuffer().onDidStopChanging(didStopChangingHandler);
                     atom.workspace.getActiveTextEditor().setText('ch ch changes');
@@ -178,7 +178,7 @@ describe("graphviz preview plus package main", () => {
             expect('MS-DOS').toContain('DOS');
         } else {
             it("updates the preview's title", () => {
-                let titleChangedCallback = jasmine.createSpy('titleChangedCallback');
+                const titleChangedCallback = jasmine.createSpy('titleChangedCallback');
 
                 waitsForPromise(() => atom.workspace.open("subdir/atest.gv"));
                 runs(() => atom.commands.dispatch(workspaceElement, 'graphviz-preview-plus:toggle'));

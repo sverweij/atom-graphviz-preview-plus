@@ -4,15 +4,15 @@ import path from 'path';
 import fs from 'fs-plus';
 import temp from 'temp';
 import GraphVizPreviewView from '../lib/graphviz-preview-plus-view';
-import grammarHelper from './grammarHelper';
+import {makeSureGrammarExists} from './grammarHelper';
 
 describe("graphviz preview plus package view", () => {
     let preview = null;
     let workspaceElement = null;
 
     beforeEach(function() {
-        this.grammarDisposable = grammarHelper.makeSureGrammarExists();
-        let filePath = atom.project.getDirectories()[0].resolve('subdir/asample.gv');
+        this.grammarDisposable = makeSureGrammarExists();
+        const filePath = atom.project.getDirectories()[0].resolve('subdir/asample.gv');
         preview = new GraphVizPreviewView({
             filePath
         });
@@ -44,7 +44,7 @@ describe("graphviz preview plus package view", () => {
             jasmine.attachToDOM(newPreview.element);
             return expect(newPreview.getPath()).toBe(preview.getPath());
         });
-        return it("serializes the editor id when opened for an editor", () => {
+        it("serializes the editor id when opened for an editor", () => {
             preview.destroy();
             waitsForPromise(() => atom.workspace.open('new.gv'));
             return runs(() => {
@@ -61,8 +61,8 @@ describe("graphviz preview plus package view", () => {
     });
     describe("when core:copy is triggered", () => {
         beforeEach(() => {
-            let fixturesPath = path.join(__dirname, 'fixtures');
-            let tempPath = temp.mkdirSync('atom');
+            const fixturesPath = path.join(__dirname, 'fixtures');
+            const tempPath = temp.mkdirSync('atom');
 
             fs.copySync(fixturesPath, tempPath);
             atom.project.setPaths([tempPath]);
@@ -86,8 +86,8 @@ describe("graphviz preview plus package view", () => {
         let previewPaneItem = null;
 
         beforeEach(() => {
-            let fixturesPath = path.join(__dirname, 'fixtures');
-            let tempPath = temp.mkdirSync('atom');
+            const fixturesPath = path.join(__dirname, 'fixtures');
+            const tempPath = temp.mkdirSync('atom');
 
             fs.copySync(fixturesPath, tempPath);
             atom.project.setPaths([tempPath]);
@@ -124,14 +124,14 @@ describe("graphviz preview plus package view", () => {
             expect(lSvg.style.zoom).toBe('1');
             return expect(lSvg.getAttribute('width')).toBe('200pt');
         });
-        return it("graphviz-preview-plus:zoom-to-fit zooms to fit", () => {
+        it("graphviz-preview-plus:zoom-to-fit zooms to fit", () => {
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-to-fit');
             const lSvg = previewPaneItem.imageContainer.find('svg')[0];
             expect(lSvg.style.zoom).toBe('1');
             return expect(lSvg.getAttribute('width')).toBe('100%');
         });
     });
-    return describe("when core:save-as is triggered", () => {
+    describe("when core:save-as is triggered", () => {
         beforeEach(() => {
             const fixturesPath = path.join(__dirname, 'fixtures');
             const tempPath = temp.mkdirSync('atom');
@@ -161,7 +161,7 @@ describe("graphviz preview plus package view", () => {
             });
         });
         it("saves a PNG and opens it", () => {
-            let outputPath = `${temp.path()}subdir/序列圖.png`;
+            const outputPath = `${temp.path()}subdir/序列圖.png`;
             let previewPaneItem = null;
 
             waitsForPromise(() => atom.workspace.open('subdir/序列圖.gv'));

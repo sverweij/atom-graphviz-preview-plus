@@ -2,7 +2,7 @@
 
 import path from 'path';
 
-exports.makeSureGrammarExists = function() {
+export function makeSureGrammarExists() {
     let lDisposable = null;
 
     if (!atom.workspace.grammarRegistry
@@ -19,5 +19,5 @@ exports.makeSureGrammarExists = function() {
         );
     }
     return lDisposable;
-};
+}
 /* global atom */

@@ -1,6 +1,6 @@
 "use babel";
 
-import wrap from '../lib/wrap-dot';
+import renderGraphVizWithCLI from '../lib/renderGraphVizWithCLI';
 
 describe("native dot wrapper", () => {
     if (process.platform === 'win32') {
@@ -9,7 +9,7 @@ describe("native dot wrapper", () => {
         });
     } else {
         it("returns an error when passed a non-existant executable name", () => {
-            wrap.render('graph { a -- b [label="okiedokie"]}', ((err, ok) => {
+            renderGraphVizWithCLI('graph { a -- b [label="okiedokie"]}', ((err, ok) => {
                 expect(ok).toBeUndefined();
                 expect(err).toBeDefined();
             }), {
