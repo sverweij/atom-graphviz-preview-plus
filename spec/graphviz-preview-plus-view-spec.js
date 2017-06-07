@@ -122,7 +122,7 @@ describe("graphviz preview plus package view", () => {
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:reset-zoom');
             const lSvg = previewPaneItem.imageContainer.find('svg')[0];
             expect(lSvg.style.zoom).toBe('1');
-            return expect(lSvg.getAttribute('width')).toBe('200pt');
+            return expect(lSvg.getAttribute('width')).toBe('199pt');
         });
         it("graphviz-preview-plus:zoom-to-fit zooms to fit", () => {
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-to-fit');
