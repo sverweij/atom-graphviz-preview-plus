@@ -28,7 +28,7 @@
     "viz.js": "1.8.0"
   },
   "devDependencies": {
-    "eslint": "3.19.0",
+    "eslint": "4.0.0",
     "temp": "0.8.3"
   },
   "package-deps": [

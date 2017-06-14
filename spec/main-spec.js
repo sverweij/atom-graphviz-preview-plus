@@ -163,7 +163,7 @@ describe("graphviz preview plus package main", () => {
                 "atom.workspace.open promise to be resolved",
                 () => atom.workspace.open(
                     `graphviz-preview-plus://${atom.project.getDirectories()[0].resolve('subdir/atest.gv')}`)
-                );
+            );
             runs(() => {
                 preview = atom.workspace.getActivePaneItem();
                 expect(preview).toBeInstanceOf(GraphVizPreviewView);
