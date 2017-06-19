@@ -1,6 +1,6 @@
 {
   "name": "graphviz-preview-plus",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "main": "./lib/main",
   "description": "Write and preview GraphViz dot. Shortcut: `ctrl-shift-V`.",
   "repository": {
@@ -28,7 +28,7 @@
     "viz.js": "1.8.0"
   },
   "devDependencies": {
-    "eslint": "3.19.0",
+    "eslint": "4.0.0",
     "temp": "0.8.3"
   },
   "package-deps": [

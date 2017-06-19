@@ -82,6 +82,35 @@ describe("graphviz preview plus package view", () => {
             return runs(() => expect(atom.clipboard.read()).toContain("<svg "));
         });
     });
+    describe("zoom functions when there is nothing to zoom, really", () => {
+        let previewPaneItem = null;
+
+        beforeEach(() => {
+            const fixturesPath = path.join(__dirname, 'fixtures');
+            const tempPath = temp.mkdirSync('atom');
+
+            fs.copySync(fixturesPath, tempPath);
+            atom.project.setPaths([tempPath]);
+            jasmine.useRealClock();
+            workspaceElement = atom.views.getView(atom.workspace);
+            jasmine.attachToDOM(workspaceElement);
+            waitsForPromise(() => atom.workspace.open('subdir/error-in-line-3.gv'));
+            runs(() => atom.commands.dispatch(workspaceElement, 'graphviz-preview-plus:toggle'));
+            waitsFor(() => previewPaneItem = atom.workspace.getPanes()[1].getActiveItem());
+        });
+
+        it("graphviz-preview-plus:zoom-in does nothing", () => {
+            let lThingsThrown = "zoom operation did not throw an error";
+
+            try {
+                atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-in');
+            } catch (e) {
+                lThingsThrown = "zoom operation threw an error";
+            }
+            expect(lThingsThrown).toBe("zoom operation did not throw an error");
+        });
+    });
+
     describe("zoom functions", () => {
         let previewPaneItem = null;
 
