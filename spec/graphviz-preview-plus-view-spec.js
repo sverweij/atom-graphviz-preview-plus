@@ -24,6 +24,8 @@ describe("graphviz preview plus package view", () => {
         if (this.grammarDisposable) {
             this.grammarDisposable.dispose();
         }
+        preview = null;
+        workspaceElement = null;
     });
     describe("::constructor", () => it("shows a loading spinner and renders the dot", () => {
         preview.showLoading();
