@@ -1,12 +1,13 @@
 "use babel";
 
 import {resolveImage} from '../lib/resolveImage';
+import * as path from 'path';
 
 describe("image resolver", () => {
     it("puts the working directory in front of relative paths", () => {
         expect(
             resolveImage('top-button.png', '/Users/christiaanhuygens/picturesofbuttons')
-        ).toEqual('/Users/christiaanhuygens/picturesofbuttons/top-button.png');
+        ).toEqual(path.join(path.sep, 'Users', 'christiaanhuygens', 'picturesofbuttons', 'top-button.png'));
     });
 
     it("leaves absolute paths alone", () => {
