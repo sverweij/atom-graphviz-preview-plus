@@ -5,7 +5,6 @@ environment:
 
   matrix:
   - ATOM_CHANNEL: stable
-  - ATOM_CHANNEL: beta
 
 ### Generic setup follows ###
 build_script:
