@@ -189,7 +189,7 @@ describe("graphviz preview plus package main", () => {
                     preview.onDidChangeTitle(titleChangedCallback);
                     fs.renameSync(
                         atom.workspace.getActiveTextEditor().getPath(),
-                        path.join(path.dirname(atom.workspace.getActiveTextEditor().getPath()), 'atest2.gv')
+                        path.join(path.dirname(atom.workspace.getActiveTextEditor().getPath().toString()), 'atest2.gv')
                     );
                 });
                 waitsFor(() => preview.getTitle().endsWith("atest2.gv preview+ (dot)"));
