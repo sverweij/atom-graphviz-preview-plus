@@ -1,6 +1,6 @@
 "use babel";
 
-import {resolveImage} from '../lib/resolveImage';
+import resolveImage from '../lib/resolveImage';
 import * as path from 'path';
 
 describe("image resolver", () => {
