@@ -25,13 +25,14 @@ describe("graphviz preview plus package main", () => {
         if (this.grammarDisposable) {
             this.grammarDisposable.dispose();
         }
+        preview = null;
+        workspaceElement = null;
     });
     expectPreviewInSplitPane = () => {
         runs(() => expect(atom.workspace.getPanes().length).toBeGreaterThan(1));
         waitsFor("graphviz preview to be created", () => preview = atom.workspace.getPanes()[1].getActiveItem());
         runs(() => {
             expect(preview).toBeInstanceOf(GraphVizPreviewView);
-            expect(preview.getPath()).toBe(atom.workspace.getActivePaneItem().getPath());
         });
     };
     describe("when a preview has not been created for the file", () => {
@@ -188,7 +189,7 @@ describe("graphviz preview plus package main", () => {
                     preview.onDidChangeTitle(titleChangedCallback);
                     fs.renameSync(
                         atom.workspace.getActiveTextEditor().getPath(),
-                        path.join(path.dirname(atom.workspace.getActiveTextEditor().getPath()), 'atest2.gv')
+                        path.join(path.dirname(atom.workspace.getActiveTextEditor().getPath().toString()), 'atest2.gv')
                     );
                 });
                 waitsFor(() => preview.getTitle().endsWith("atest2.gv preview+ (dot)"));

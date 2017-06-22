@@ -1,0 +1,13 @@
+digraph  {
+  bgcolor=transparent
+
+  edge[color=grey]
+  node[
+    labelloc=b
+    height=1
+    label="Tux \N"
+    shape=none
+    image="picture.png"
+  ]
+  a -> b -> c -> a
+}
