@@ -1,6 +1,6 @@
 {
   "name": "graphviz-preview-plus",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "main": "./lib/main",
   "description": "Write and preview GraphViz dot. Shortcut: `ctrl-shift-V`.",
   "repository": {
