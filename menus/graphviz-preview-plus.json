@@ -86,7 +86,28 @@
             "command": "graphviz-preview-plus:engine-twopi"
           }
         ]
-      }
+    },
+    {
+      "label": "Zoom",
+      "submenu": [
+        {
+          "label": "to fit",
+          "command": "graphviz-preview-plus:zoom-to-fit"
+        },
+        {
+          "label": "to width",
+          "command": "graphviz-preview-plus:zoom-to-width"
+        },
+        {
+          "label": "to height",
+          "command": "graphviz-preview-plus:zoom-to-height"
+        },
+        {
+          "label": "reset",
+          "command": "graphviz-preview-plus:reset-zoom"
+        }
+      ]
+    }
     ]
   }
 }

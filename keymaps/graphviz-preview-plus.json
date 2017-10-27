@@ -8,7 +8,9 @@
     "cmd--": "graphviz-preview-plus:zoom-out",
     "cmd-_": "graphviz-preview-plus:zoom-out",
     "cmd-0": "graphviz-preview-plus:reset-zoom",
-    "cmd-9": "graphviz-preview-plus:zoom-to-fit"
+    "cmd-9": "graphviz-preview-plus:zoom-to-fit",
+    "cmd-8": "graphviz-preview-plus:zoom-to-width",
+    "cmd-7": "graphviz-preview-plus:zoom-to-height"
   },
   ".platform-win32 .graphviz-preview-plus, .platform-linux .graphviz-preview-plus": {
     "ctrl-+": "graphviz-preview-plus:zoom-in",
@@ -16,6 +18,8 @@
     "ctrl--": "graphviz-preview-plus:zoom-out",
     "ctrl-_": "graphviz-preview-plus:zoom-out",
     "ctrl-0": "graphviz-preview-plus:reset-zoom",
-    "ctrl-9": "graphviz-preview-plus:zoom-to-fit"
+    "ctrl-9": "graphviz-preview-plus:zoom-to-fit",
+    "ctrl-8": "graphviz-preview-plus:zoom-to-width",
+    "ctrl-7": "graphviz-preview-plus:zoom-to-height"
   }
 }
