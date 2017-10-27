@@ -134,32 +134,53 @@ describe("graphviz preview plus package view", () => {
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-in');
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-in');
             const lSvg = previewPaneItem.imageContainer.find('svg')[0];
-            return expect(lSvg.style.zoom).toBe('1.3');
+            expect(lSvg.style.zoom).toBe('1.3');
         });
         it("2x graphviz-preview-plus:zoom-out decreases the image size by 20%", () => {
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-out');
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-out');
             const lSvg = previewPaneItem.imageContainer.find('svg')[0];
-            return expect(lSvg.style.zoom).toBe('0.8');
+            expect(lSvg.style.zoom).toBe('0.8');
         });
         it("graphviz-preview-plus:reset-zoom resets zoom after size change", () => {
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-out');
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:reset-zoom');
             const lSvg = previewPaneItem.imageContainer.find('svg')[0];
-            return expect(lSvg.style.zoom).toBe('1');
+            expect(lSvg.style.zoom).toBe('1');
         });
         it("graphviz-preview-plus:reset-zoom resets zoom after zoom-to-fit", () => {
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-to-fit');
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:reset-zoom');
             const lSvg = previewPaneItem.imageContainer.find('svg')[0];
             expect(lSvg.style.zoom).toBe('1');
-            return expect(lSvg.getAttribute('width')).toBe('199pt');
+            expect(lSvg.getAttribute('width')).toBe('199pt');
+        });
+        it("graphviz-preview-plus:reset-zoom resets zoom after zoom-to-width", () => {
+            atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-to-width');
+            atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:reset-zoom');
+            const lSvg = previewPaneItem.imageContainer.find('svg')[0];
+            expect(lSvg.style.zoom).toBe('1');
+            expect(lSvg.getAttribute('width')).toBe('199pt');
         });
         it("graphviz-preview-plus:zoom-to-fit zooms to fit", () => {
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-to-fit');
             const lSvg = previewPaneItem.imageContainer.find('svg')[0];
-            expect(lSvg.style.zoom).toBe('1');
-            return expect(lSvg.getAttribute('width')).toBe('100%');
+            expect(parseFloat(lSvg.style.zoom, 10)).toBe(0);
+            expect(lSvg.getAttribute('width')).toBe('199pt');
+        });
+        it("graphviz-preview-plus:zoom-to-width zooms to width", () => {
+            atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-to-width');
+            const lSvg = previewPaneItem.imageContainer.find('svg')[0];
+
+            // the actual zoom factor depends on the platform, so
+            // putting an exact number here will make it pass on one
+            // and fail on other platforms
+            expect(parseFloat(lSvg.style.zoom, 10)).toBeGreaterThan(1.3);
+        });
+        it("graphviz-preview-plus:zoom-to-height zooms to height", () => {
+            atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-to-height');
+            const lSvg = previewPaneItem.imageContainer.find('svg')[0];
+            expect(lSvg.style.zoom).toBe('0');
         });
     });
     describe("when core:save-as is triggered", () => {
