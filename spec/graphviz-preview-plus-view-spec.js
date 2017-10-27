@@ -165,7 +165,7 @@ describe("graphviz preview plus package view", () => {
         it("graphviz-preview-plus:zoom-to-fit zooms to fit", () => {
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-to-fit');
             const lSvg = previewPaneItem.imageContainer.find('svg')[0];
-            expect(parseInt(lSvg.style.zoom, 10)).toBe(0);
+            expect(parseFloat(lSvg.style.zoom, 10)).toBe(0);
             expect(lSvg.getAttribute('width')).toBe('199pt');
         });
         it("graphviz-preview-plus:zoom-to-width zooms to width", () => {
@@ -175,7 +175,7 @@ describe("graphviz preview plus package view", () => {
             // the actual zoom factor depends on the platform, so
             // putting an exact number here will make it pass on one
             // and fail on other platforms
-            expect(parseInt(lSvg.style.zoom, 10)).toBeGreaterThan(1.3);
+            expect(parseFloat(lSvg.style.zoom, 10)).toBeGreaterThan(1.3);
         });
         it("graphviz-preview-plus:zoom-to-height zooms to height", () => {
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-to-height');
