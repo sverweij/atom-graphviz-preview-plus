@@ -165,8 +165,8 @@ describe("graphviz preview plus package view", () => {
         it("graphviz-preview-plus:zoom-to-fit zooms to fit", () => {
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-to-fit');
             const lSvg = previewPaneItem.imageContainer.find('svg')[0];
-            expect(parseFloat(lSvg.style.zoom, 10)).toBe(0);
-            expect(lSvg.getAttribute('width')).toBe('199pt');
+            expect(parseFloat(lSvg.style.zoom, 10)).toBe(1);
+            expect(lSvg.getAttribute('width')).toBe('100%');
         });
         it("graphviz-preview-plus:zoom-to-width zooms to width", () => {
             atom.commands.dispatch(previewPaneItem.element, 'graphviz-preview-plus:zoom-to-width');
