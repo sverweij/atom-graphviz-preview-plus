@@ -1,0 +1,6 @@
+digraph {
+    bgcolor=transparent graph [dpi=300];
+    F -> B;
+    A -> Q;
+    A -> B;
+}

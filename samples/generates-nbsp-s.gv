@@ -1,0 +1,104 @@
+digraph Q1_CFG {
+    rankdir=TB
+
+    B1
+    [
+        shape = none
+        label = <<table border="0" cellborder = "1" cellspacing="0" bgcolor="white" >
+                    <tr><td border="1" bgcolor="grey" ><font color="white"><B>B1</B></font></td></tr>
+                    <tr><td PORT="l_main"> &iexcl;Main:
+                    </td></tr>
+                    <tr><td PORT="I1" align = "left"> I1
+                    </td></tr>
+                    <tr><td PORT="I2" align = "left"> I2
+                    </td></tr>
+                    <tr><td PORT="I3" align = "left"> I3
+                    </td></tr>
+                    <tr><td PORT="I4" align = "left"> I4
+                    </td></tr>
+                    <tr><td PORT="I5" align = "left"> I5
+                    </td></tr>
+                    <tr><td PORT="I6" align = "left"> I6
+                    </td></tr>
+                </table>>
+    ];
+    B2
+    [
+        shape = none
+        label = <<table border="1" cellspacing="0" bgcolor="white" >
+                    <tr><td border="1" bgcolor="grey" ><font color="white"><B>B2</B></font></td></tr>
+                    <tr><td>
+                    </td></tr>
+                    <tr><td PORT="I7" align = "left"> I7
+                    </td></tr>
+                    <tr><td PORT="I8" align = "left"> I8
+                    </td></tr>
+                </table>>
+    ];
+    B3
+    [
+        shape = none
+        label = <<table border="1" cellspacing="0" bgcolor="white" >
+                    <tr><td border="1" bgcolor="grey" ><font color="white"><B>B3</B></font></td></tr>
+                    <tr><td PORT="l_23"> labelX:
+                    </td></tr>
+                    <tr><td PORT="I9" align = "left">I9
+                    </td></tr>
+                    <tr><td PORT="I10" align = "left"> I10
+                    </td></tr>
+                    <tr><td PORT="I11" align = "left"> I11
+                    </td></tr>
+                    <tr><td PORT="I12" align = "left"> I12
+                    </td></tr>
+                </table>>
+    ];
+    B4
+    [
+        shape = none
+        label = <<table border="1" cellspacing="0" bgcolor="white" >
+                    <tr><td border="1" bgcolor="grey" ><font color="white"><B>B4</B></font></td></tr>
+                    <tr><td PORT="l_63"> labelX:
+                    </td></tr>
+                    <tr><td PORT="I513" align = "left"> I13
+                    </td></tr>
+                </table>>
+    ];
+    B5
+    [
+        shape = none
+        label = <<table border="1" cellspacing="0" bgcolor="white" >
+                    <tr><td border="1" bgcolor="grey" ><font color="white"><B>B5</B></font></td></tr>
+                    <tr><td PORT="l_04" > labelX:
+                    </td></tr>
+                    <tr><td PORT="I14" align = "left"> I14
+                    </td></tr>
+                    <tr><td PORT="I15" align = "left"> I15
+                    </td></tr>
+                </table>>
+    ];
+    B6
+    [
+        shape = none
+        label = <<table border="1" cellspacing="0">
+                    <tr><td border="1" bgcolor="grey" ><font color="white"><B>B6</B></font></td></tr>
+                    <tr><td PORT="l_13" > labelX:
+                    </td></tr>
+                    <tr><td PORT="I16" align = "left"> I16
+                    </td></tr>
+                    <tr><td PORT="I17" align = "left"> I17
+                    </td></tr>
+                    <tr><td PORT="I18" align = "left"> I18
+                    </td></tr>
+                    <tr><td PORT="I19" align = "left"> I19
+                    </td></tr>
+                </table>>
+    ];
+
+    B1 -> B5
+    B3 -> B2
+    B2 -> B2
+    B5 -> B6
+    B3 -> B4
+    B5 -> B3
+    B6 -> B4
+}
