@@ -21,3 +21,4 @@ export function makeSureGrammarExists() {
     return lDisposable;
 }
 /* global atom */
+/* eslint import/prefer-default-export: 0 */

@@ -29,6 +29,9 @@
   },
   "devDependencies": {
     "eslint": "4.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-security": "^1.4.0",
     "temp": "0.8.3"
   },
   "package-deps": [

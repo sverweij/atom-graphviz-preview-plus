@@ -22,3 +22,5 @@ describe("workarounds", () => {
 
     // describe("resolveImages", () => true);
 });
+
+/* eslint import/no-namespace: 0 */

@@ -1,7 +1,7 @@
 "use babel";
 
+import path from 'path';
 import resolveImage from '../lib/resolveImage';
-import * as path from 'path';
 
 describe("image resolver", () => {
     it("puts the working directory in front of relative paths", () => {
