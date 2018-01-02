@@ -1,6 +1,7 @@
 {
-  "atom-workspace atom-text-editor:not(.mini)[data-grammar~=\"dot\"], atom-workspace atom-text-editor:not(.mini)[data-grammar~=\"gv\"]": {
-    "ctrl-V": "graphviz-preview-plus:toggle"
+  "atom-workspace atom-text-editor:not(.mini)[data-grammar='source dot']": {
+    "ctrl-shift-g": "graphviz-preview-plus:toggle",
+    "ctrl-shift-v": "graphviz-preview-plus:toggle"
   },
   ".platform-darwin .graphviz-preview-plus": {
     "cmd-+": "graphviz-preview-plus:zoom-in",

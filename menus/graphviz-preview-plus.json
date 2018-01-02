@@ -7,7 +7,7 @@
           "label": "GrapViz preview+",
           "submenu": [
             {
-              "label": "Toggle Preview        ^\u21E7V",
+              "label": "Toggle Preview        ^\u21E7G",
               "command": "graphviz-preview-plus:toggle"
             },
             {
