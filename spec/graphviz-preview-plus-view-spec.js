@@ -17,7 +17,7 @@ describe("graphviz preview plus package view", () => {
             filePath
         });
         jasmine.attachToDOM(preview.element);
-        return waitsForPromise(() => atom.packages.activatePackage("graphviz-preview-plus"));
+        waitsForPromise(() => atom.packages.activatePackage("graphviz-preview-plus"));
     });
 
     afterEach(function() {
@@ -36,7 +36,6 @@ describe("graphviz preview plus package view", () => {
     }));
 
     describe("serialization", () => {
-
         it("recreates the preview when serialized/deserialized", () => {
             const newPreview = atom.deserializers.deserialize(preview.serialize());
 
@@ -46,27 +45,6 @@ describe("graphviz preview plus package view", () => {
             if (newPreview !== null) {
                 newPreview.destroy();
             }
-        });
-
-        it("serializes the editor id when opened for an editor", () => {
-            preview.destroy();
-            waitsForPromise(() => atom.workspace.open('new.gv'));
-            runs(() => {
-                preview = new GraphVizPreviewView({
-                    editorId: atom.workspace.getActiveTextEditor().id
-                });
-
-                jasmine.attachToDOM(preview.element);
-                // expect(preview.getPath()).toBe(atom.workspace.getActiveTextEditor().getPath());
-                const newPreview = atom.deserializers.deserialize(preview.serialize());
-                jasmine.attachToDOM(newPreview.element);
-
-                expect(newPreview.getPath()).toBe(preview.getPath());
-
-                if (newPreview !== null) {
-                    newPreview.destroy();
-                }
-            });
         });
     });
 
