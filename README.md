@@ -1,6 +1,6 @@
 # GraphViz preview+
 
-Write and preview GraphViz dot. Shortcut: `ctrl-shift-V`.
+Write and preview GraphViz dot with `ctrl-shift-G`.
 
 Enabled for `.dot` and `.gv` files
 
