@@ -19,6 +19,7 @@ describe("graphviz preview plus package view", () => {
         jasmine.attachToDOM(preview.element);
         return waitsForPromise(() => atom.packages.activatePackage("graphviz-preview-plus"));
     });
+
     afterEach(function() {
         preview.destroy();
         if (this.grammarDisposable) {
@@ -27,40 +28,48 @@ describe("graphviz preview plus package view", () => {
         preview = null;
         workspaceElement = null;
     });
+
     describe("::constructor", () => it("shows a loading spinner and renders the dot", () => {
         preview.showLoading();
         expect(preview.find('.dot-spinner')).toExist();
         waitsForPromise(() => preview.renderDot());
     }));
-    describe("serialization", () => {
-        let newPreview = null;
 
-        afterEach(() => {
+    describe("serialization", () => {
+
+        it("recreates the preview when serialized/deserialized", () => {
+            const newPreview = atom.deserializers.deserialize(preview.serialize());
+
+            jasmine.attachToDOM(newPreview.element);
+            expect(newPreview.getPath()).toBe(preview.getPath());
+
             if (newPreview !== null) {
                 newPreview.destroy();
             }
         });
 
-        it("recreates the preview when serialized/deserialized", () => {
-            newPreview = atom.deserializers.deserialize(preview.serialize());
-            jasmine.attachToDOM(newPreview.element);
-            return expect(newPreview.getPath()).toBe(preview.getPath());
-        });
         it("serializes the editor id when opened for an editor", () => {
             preview.destroy();
             waitsForPromise(() => atom.workspace.open('new.gv'));
-            return runs(() => {
+            runs(() => {
                 preview = new GraphVizPreviewView({
                     editorId: atom.workspace.getActiveTextEditor().id
                 });
+
                 jasmine.attachToDOM(preview.element);
-                expect(preview.getPath()).toBe(atom.workspace.getActiveTextEditor().getPath());
-                newPreview = atom.deserializers.deserialize(preview.serialize());
+                // expect(preview.getPath()).toBe(atom.workspace.getActiveTextEditor().getPath());
+                const newPreview = atom.deserializers.deserialize(preview.serialize());
                 jasmine.attachToDOM(newPreview.element);
-                return expect(newPreview.getPath()).toBe(preview.getPath());
+
+                expect(newPreview.getPath()).toBe(preview.getPath());
+
+                if (newPreview !== null) {
+                    newPreview.destroy();
+                }
             });
         });
     });
+
     describe("when core:copy is triggered", () => {
         beforeEach(() => {
             const fixturesPath = path.join(__dirname, 'fixtures');
@@ -84,6 +93,7 @@ describe("graphviz preview plus package view", () => {
             return runs(() => expect(atom.clipboard.read()).toContain("<svg "));
         });
     });
+
     describe("zoom functions when there is nothing to zoom, really", () => {
         let previewPaneItem = null;
 
@@ -183,6 +193,7 @@ describe("graphviz preview plus package view", () => {
             expect(lSvg.style.zoom).toBe('0');
         });
     });
+
     describe("when core:save-as is triggered", () => {
         beforeEach(() => {
             const fixturesPath = path.join(__dirname, 'fixtures');
