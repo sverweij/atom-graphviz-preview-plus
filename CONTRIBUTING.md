@@ -30,7 +30,7 @@ To make this as easy as possible for you, here's some simple guidelines:
     - Code style fits in with the current code base:
     - Additions pass coffeelint.
 - Plan to do something drastic?     
-  Contact @SanderSpeaks on Twitter, or leave an [issue](https://github.com/sverweij/atom-graphviz-preview-plus/issues/new) on GitHub
+  Leave an [issue](https://github.com/sverweij/atom-graphviz-preview-plus/issues/new) on GitHub
 
 ### Legal
 - the code you add will be subject to
