@@ -191,7 +191,7 @@ describe("graphviz preview plus package view", () => {
             runs(() => atom.commands.dispatch(workspaceElement, 'graphviz-preview-plus:toggle'));
             waitsFor(() => previewPaneItem = atom.workspace.getPanes()[1].getActiveItem());
             runs(() => {
-                spyOn(atom, 'showSaveDialogSync').andReturn(outputPath);
+                spyOn(atom.applicationDelegate, 'showSaveDialog').andReturn(outputPath);
                 atom.commands.dispatch(previewPaneItem.element, 'core:save-as');
             });
             waitsFor(() => fs.existsSync(outputPath));
