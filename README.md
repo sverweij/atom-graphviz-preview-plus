@@ -12,7 +12,7 @@ Enabled for `.dot` and `.gv` files
 - **PNG export** - to file
 - **Switch** the GraphViz **layout engine**. GraphViz Preview+ will
   remember the last one you used.
-- For syntax hihglighting we recommend
+- For syntax highlighting we recommend
   [language-dot](https://github.com/AdoPi/language-dot) (the only one in
   `apm` at the moment). If it's not installed, GraphViz preview+ will take
   care of the installation.
