@@ -1,6 +1,6 @@
 "use babel";
 
-const renderError = require('../lib/renderError');
+import renderError from '../lib/renderError';
 
 const ERROR_SMALLER_THEN_FIXTURE = `<div class='error-wrap'>
         <div class='block error-head'>
