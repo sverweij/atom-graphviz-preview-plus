@@ -221,7 +221,7 @@ describe("graphviz preview plus package main", () => {
             waitsForPromise(() => atom.workspace.open("subdir/error-in-line-3.gv"));
             runs(() => atom.commands.dispatch(workspaceElement, 'graphviz-preview-plus:toggle'));
             expectPreviewInSplitPane();
-            runs(() => expect(preview[0].innerHTML).toContain("  3 <mark>  \\</mark>"));
+            runs(() => expect(preview[0].innerHTML).toContain("  3 &lt;mark&gt;  \\&lt;/mark&gt;"));
         })
     );
 });
