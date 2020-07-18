@@ -72,15 +72,15 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "atom-space-pen-views": "2.2.0",
-    "atom-package-deps": "5.1.0",
+    "atom-package-deps": "6.0.0",
     "fs-plus": "3.1.1",
     "underscore-plus": "1.7.0",
     "viz.js": "1.8.2"
   },
   "devDependencies": {
-    "eslint": "6.6.0",
-    "eslint-plugin-import": "2.18.2",
-    "eslint-plugin-node": "10.0.0",
+    "eslint": "7.4.0",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-node": "11.1.0",
     "eslint-plugin-security": "1.4.0",
     "temp": "0.9.1"
   },
