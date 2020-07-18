@@ -29,7 +29,7 @@ notifications:
 
 branches:
   only:
-    - master
+    - main
 
 git:
   depth: 10
