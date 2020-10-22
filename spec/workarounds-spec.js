@@ -1,6 +1,6 @@
 "use babel";
 
-import * as workarounds from '../lib/workarounds';
+import * as workarounds from '../lib/workarounds.js';
 
 describe("workarounds", () => {
     // describe("correctViewBox", () => true);

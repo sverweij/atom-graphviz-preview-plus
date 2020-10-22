@@ -1,6 +1,6 @@
 "use babel";
 
-import renderError from '../lib/renderError';
+import renderError from "../lib/render-error.js";
 
 const ERROR_SMALLER_THEN_FIXTURE = `<div class='error-wrap'>
         <div class='block error-head'>
@@ -12,11 +12,9 @@ const ERROR_SMALLER_THEN_FIXTURE = `<div class='error-wrap'>
     </div>`;
 
 describe("renderError", () => {
-    it("replaces < with &lt;", () => {
-        expect(
-            renderError("<<", "<<<")
-        ).toEqual(ERROR_SMALLER_THEN_FIXTURE);
-    });
+  it("replaces < with &lt;", () => {
+    expect(renderError("<<", "<<<")).toEqual(ERROR_SMALLER_THEN_FIXTURE);
+  });
 });
 
 /* eslint import/no-namespace: 0 */

@@ -72,16 +72,21 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "atom-space-pen-views": "2.2.0",
-    "atom-package-deps": "6.0.0",
+    "atom-package-deps": "7.0.2",
     "fs-plus": "3.1.1",
     "underscore-plus": "1.7.0",
     "viz.js": "1.8.2"
   },
   "devDependencies": {
-    "eslint": "7.4.0",
-    "eslint-plugin-import": "2.22.0",
+    "dependency-cruiser": "9.15.1",
+    "eslint": "7.12.0",
+    "eslint-config-moving-meadow": "2.0.7",
+    "eslint-config-prettier": "6.14.0",
+    "eslint-plugin-budapestian": "2.3.0",
+    "eslint-plugin-import": "2.22.1",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-security": "1.4.0",
+    "eslint-plugin-unicorn": "23.0.0",
     "temp": "0.9.1"
   },
   "package-deps": [
@@ -94,5 +99,11 @@
   },
   "bugs": {
     "url": "https://github.com/sverweij/atom-graphviz-preview-plus/issues"
+  },
+  "scripts": {
+    "depcruise": "depcruise lib spec -v",
+    "depcruise:graph": "depcruise lib spec --focus '^(lib|spec)' -v -T dot | dot -T svg | depcruise-wrap-stream-in-html > dependency-graph.html",
+    "depcruise:html": "depcruise lib spec -v -T err-html -f dependency-violation-report.html",
+    "lint": "eslint lib spec"
   }
 }

@@ -39,8 +39,8 @@ sudo: false
 addons:
   apt:
     packages:
-    - build-essential
-    - git
-    - libgnome-keyring-dev
-    - libsecret-1-dev
-    - fakeroot
+      - build-essential
+      - git
+      - libgnome-keyring-dev
+      - libsecret-1-dev
+      - fakeroot

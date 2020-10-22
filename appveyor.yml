@@ -4,7 +4,7 @@ environment:
   ATOM_LINT_WITH_BUNDLED_NODE: "true"
 
   matrix:
-  - ATOM_CHANNEL: stable
+    - ATOM_CHANNEL: stable
 
 ### Generic setup follows ###
 build_script:
