@@ -25,7 +25,7 @@ To make this as easy as possible for you, here's some simple guidelines:
 
 - We prefer well documented
   **[pull requests](https://help.github.com/articles/creating-a-pull-request/)**
-  based on the most recent version of the **master** branch.
+  based on the most recent version of the **main** branch.
 - Code quality
   - Unit tests prove your code does what it intends.
   - Your code does not introduce regressions - `apm test` proves this.

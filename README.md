@@ -4,7 +4,7 @@ Write and preview GraphViz dot with `ctrl-shift-G`.
 
 Enabled for `.dot` and `.gv` files
 
-![animated gif demoing live preview](https://raw.githubusercontent.com/sverweij/atom-graphviz-preview-plus/master/assets/graphviz-preview-plus.gif)
+![animated gif demoing live preview](https://raw.githubusercontent.com/sverweij/atom-graphviz-preview-plus/main/assets/graphviz-preview-plus.gif)
 
 ## Features
 
@@ -45,11 +45,11 @@ to implement, usually with just a few lines of code.
 - This software is free software [licensed under GPL-3.0](LICENSE.md). This means
   (a.o.) you _can_ use it as part of other free software, but _not_ as part of
   non free software.
-- viz.js is [BSD](https://github.com/mdaines/viz.js/blob/master/LICENSE) licensed,
+- viz.js is [BSD](https://github.com/mdaines/viz.js/blob/main/LICENSE) licensed,
 - GraphViz is licensed under the [EPL](http://graphviz.org/License.php).
 
 ## Build status
 
-[![Build Status](https://travis-ci.org/sverweij/atom-graphviz-preview-plus.svg?branch=master)](https://travis-ci.org/sverweij/atom-graphviz-preview-plus)
+[![Build Status](https://travis-ci.org/sverweij/atom-graphviz-preview-plus.svg?branch=main)](https://travis-ci.org/sverweij/atom-graphviz-preview-plus)
 [![Dependency Status](https://david-dm.org/sverweij/atom-graphviz-preview-plus.svg)](https://david-dm.org/sverweij/atom-graphviz-preview-plus)
 [![devDependency Status](https://david-dm.org/sverweij/atom-graphviz-preview-plus/dev-status.svg)](https://david-dm.org/sverweij/atom-graphviz-preview-plus#info=devDependencies)
