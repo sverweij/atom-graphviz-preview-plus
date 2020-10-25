@@ -7,6 +7,7 @@ Enabled for `.dot` and `.gv` files
 ![animated gif demoing live preview](https://raw.githubusercontent.com/sverweij/atom-graphviz-preview-plus/master/assets/graphviz-preview-plus.gif)
 
 ## Features
+
 - **live rendering** of your diagram
 - **SVG export** - to file or clipboard
 - **PNG export** - to file
@@ -22,6 +23,7 @@ Enabled for `.dot` and `.gv` files
   tick the _use GraphViz command line_ option in the settings
 
 ## Why another GraphViz previewer?
+
 Because I needed one.
 
 There is an [other](https://atom.io/packages/graphviz-preview)
@@ -39,6 +41,7 @@ exporting to other formats and a lot of potential future features are easy
 to implement, usually with just a few lines of code.
 
 ## License information
+
 - This software is free software [licensed under GPL-3.0](LICENSE.md). This means
   (a.o.) you _can_ use it as part of other free software, but _not_ as part of
   non free software.
@@ -46,6 +49,7 @@ to implement, usually with just a few lines of code.
 - GraphViz is licensed under the [EPL](http://graphviz.org/License.php).
 
 ## Build status
+
 [![Build Status](https://travis-ci.org/sverweij/atom-graphviz-preview-plus.svg?branch=master)](https://travis-ci.org/sverweij/atom-graphviz-preview-plus)
 [![Dependency Status](https://david-dm.org/sverweij/atom-graphviz-preview-plus.svg)](https://david-dm.org/sverweij/atom-graphviz-preview-plus)
 [![devDependency Status](https://david-dm.org/sverweij/atom-graphviz-preview-plus/dev-status.svg)](https://david-dm.org/sverweij/atom-graphviz-preview-plus#info=devDependencies)
