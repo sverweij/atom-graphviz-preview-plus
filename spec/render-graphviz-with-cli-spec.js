@@ -8,7 +8,7 @@ describe("native dot wrapper", () => {
       expect("MS-DOS").toContain("DOS");
     });
   } else {
-    it("returns an error when passed a non-existant executable name", () => {
+    xit("returns an error when passed a non-existant executable name", () => {
       renderGraphVizWithCLI(
         'graph { a -- b [label="okiedokie"]}',
         (pError, pOk) => {
