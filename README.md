@@ -1,5 +1,13 @@
 # GraphViz preview+
 
+
+<hr/>
+
+### :warning: status 2023-05-05: _archived_
+As the [atom editor is no more](https://github.blog/2022-06-08-sunsetting-atom/), this plugin is _archived_ and will not be maintained anymore.
+
+<hr/>
+
 Write and preview GraphViz dot with `ctrl-shift-G`.
 
 Enabled for `.dot` and `.gv` files
